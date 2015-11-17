@@ -24,13 +24,13 @@ puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 
 
-    Post.find_or_create_by!(
+@post = Post.find_or_create_by!(
         title: "This is one of a kind!",
         body: "So is this!"
     )
 
 
-    Comment.find_or_create_by!(
+@comment =  Comment.find_or_create_by!(
         body: "this is unique",
-        post_id: 51,
+        post: @post
     )
