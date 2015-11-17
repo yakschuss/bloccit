@@ -52,12 +52,12 @@ let (:my_question){Question.create!(title: RandomData.random_sentence, body: Ran
   describe "POST #create" do
 
     it "increases the number of Question by 1" do
-      expect{post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post, :count).by(1)
+      expect{post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Question, :count).by(1)
     end
 
     it "assigns the new question to @question" do
       post :create, question:{title: RandomData.random_sentence, body: random_sentence}
-      expect(assigns(:question)).to eq Post.last
+      expect(assigns(:question)).to eq Question.last
     end
 
     it "redirects to the new question" do
@@ -94,8 +94,9 @@ let (:my_question){Question.create!(title: RandomData.random_sentence, body: Ran
       new_body = RandomData.random_paragraph
 
       put :update, id: my_question.id, question: {title: new_title, body: new_body}
-
+      p my_question
       updated_question = assigns(:question)
+      p updated_question
       expect(updated_question.id).to eq my_question.id
       expect(updated_question.title).to eq my_question.title
       expect(updated_question.body).to eq my_question.body
@@ -119,7 +120,7 @@ let (:my_question){Question.create!(title: RandomData.random_sentence, body: Ran
     end
 
     it "redirects to question index" do
-    delete :destroy, ({id: my_question.id}).size
+    delete :destroy, {id: my_question.id}
     expect(response).to redirect_to questions_path
     end
   end
