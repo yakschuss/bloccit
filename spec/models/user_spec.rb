@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
   it { should have_secure_password }
   it { should validate_length_of(:password).is_at_least(6)}
 
+
   describe "attributes" do
     it "should respond to name" do
       expect(user).to respond_to(:name)
@@ -23,7 +24,14 @@ RSpec.describe User, type: :model do
     it "should respond to email" do
       expect(user).to respond_to(:email)
     end
+    it "should format the string properly" do
+      user.name = 'bloc user'
+      user.save
+      expect(user.name).to eq("Bloc User")
+    end
   end
+
+
 
   describe "invalid user" do
     let(:user_with_invalid_name) {User.new(name: "", email: "user@bloccit.com")}
