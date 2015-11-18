@@ -2,7 +2,7 @@ require 'rails_helper'
 include RandomData
 RSpec.describe QuestionsController, type: :controller do
 
-let (:my_question){Question.create!(title: RandomData.random_sentence, body: RandomData.random_sentence,)} #resolved: false)}
+let (:my_question){Question.create!(title: RandomData.random_sentence, body: RandomData.random_sentence, resolved: false)}
 
   describe "GET #index" do
     it "returns http success" do
@@ -94,12 +94,11 @@ let (:my_question){Question.create!(title: RandomData.random_sentence, body: Ran
       new_body = RandomData.random_paragraph
 
       put :update, id: my_question.id, question: {title: new_title, body: new_body}
-      p my_question
+
       updated_question = assigns(:question)
-      p updated_question
       expect(updated_question.id).to eq my_question.id
-      expect(updated_question.title).to eq my_question.title
-      expect(updated_question.body).to eq my_question.body
+      expect(updated_question.title).to eq new_title
+      expect(updated_question.body).to eq new_body
     end
 
     it "redirects to the updated question" do
