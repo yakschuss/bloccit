@@ -18,7 +18,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET show" do
     it "Returns http success" do
-      get :show
+      get :show, {id: my_topic.id}
       expect(response).to have_http_status(:success)
     end
 
