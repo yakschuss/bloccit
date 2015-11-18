@@ -19,18 +19,19 @@ posts = Post.all
 
 end
 
+
+a_one_of_a_kind_post = Post.find_or_create_by!(
+                title: "This is one of a kind!",
+                body: "So is this!"
+                )
+
+
+a_one_of_a_kind_comment =  Comment.find_or_create_by!(
+                body: "this is unique",
+                post: a_one_of_a_kind_post
+                )
+
+
 puts "Seed finished!"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-
-
-@post = Post.find_or_create_by!(
-        title: "This is one of a kind!",
-        body: "So is this!"
-    )
-
-
-@comment =  Comment.find_or_create_by!(
-        body: "this is unique",
-        post: @post
-    )
