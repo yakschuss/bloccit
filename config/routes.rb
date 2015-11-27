@@ -8,14 +8,22 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  
-  resources :users, only: [:new, :create]
+
+  resources :users, only: [:new, :create] do
+    collection do
+        post :confirm
+    end
+  end
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  post 'confirm' => 'users#confirm'
 
-  get 'about' => 'welcome#about'
+  resources :welcome, only: [:index] do
+    collection do
+      get :about #, as: 'about'
+    end
+  end
+
 
   root to: 'welcome#index'
 end
