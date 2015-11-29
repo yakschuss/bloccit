@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     @post = @topic.posts.build(post_params)
+    @post.rating = Rating.update_rating(params[:post][:rating])
     @post.user = current_user
 
     if @post.save
@@ -34,6 +35,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.rating = Rating.update_rating(params[:post][:rating])
     @post.assign_attributes(post_params)
 
     if @post.save

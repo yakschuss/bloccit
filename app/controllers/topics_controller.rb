@@ -14,7 +14,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-
+    @topic.rating = Rating.update_rating(params[:topic][:rating])
 
       if @topic.save
         @topic.labels = Label.update_labels(params[:topic][:labels])
@@ -32,7 +32,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find (params[:id])
     @topic.assign_attributes(topic_params)
-
+    @topic.rating = Rating.update_rating(params[:topic][:rating])
     if @topic.save
       @topic.labels = Label.update_labels(params[:topic][:labels])
       flash[:notice] = "Topic was updated"
