@@ -7,6 +7,7 @@ RSpec.describe Post, type: :model do
 
   let (:user){User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "helloworld") }
   let (:post){topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
+  let(:created_post) { Post.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, topic: topic, user: user) }
 
   it { should have_many(:labelings)}
   it { should have_many(:labels).through(:labelings)}
@@ -48,6 +49,13 @@ RSpec.describe Post, type: :model do
       it "returns the sum of all down and up votes" do
         expect( post.points ).to eq(@up_votes - @down_votes)
       end
+    end
+  end
+
+    describe "create_fav" do
+      it "sends an email to users who have created a new post " do
+        expect(FavoriteMailer).to receive(:new_post).with(created_post.user, created_post).and_return(double(deliver_now: true))
+        created_post.save
     end
   end
 end
