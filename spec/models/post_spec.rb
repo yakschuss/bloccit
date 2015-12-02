@@ -11,6 +11,7 @@ RSpec.describe Post, type: :model do
   it { should have_many(:labelings)}
   it { should have_many(:labels).through(:labelings)}
   it { should have_many (:votes)}
+  it { should have_many (:favorites) }
   it { should have_many (:comments)}
   it {should belong_to(:topic)}
   it {should belong_to(:user)}

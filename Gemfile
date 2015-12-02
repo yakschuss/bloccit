@@ -23,8 +23,8 @@ group :development do
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 
-#used for encrypting user passwords
-gem 'bcrypt'
+#Environment Variable setup
+gem 'figaro', '1.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -44,6 +44,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
