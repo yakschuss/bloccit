@@ -1,0 +1,9 @@
+You'll receive emails for comments made to "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+Because it's your post, <%= @post.user.name %>!
+
+
+
+
+Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>

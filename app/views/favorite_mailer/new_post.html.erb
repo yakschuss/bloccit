@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  </head>
+  <body>
+    <h1>You'll automatically receive emails about comments to "<%= @post.title %>"</h1>
+    <small>
+      Since it's your post, <%= @post.user.name %>! If you'd like to stop receiving these emails, just "unfavorite" the post.
+    </small>
+    <p>
+    <%= link_to "View Post on Site", topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>
+    </p>
+  </body>
+</html>
