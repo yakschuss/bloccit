@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only: [:new, :create] do
+  resources :users, only: [:new, :create, :show] do
     collection do
         post :confirm
     end
