@@ -3,10 +3,10 @@
     <div class="media">
       <br />
 
-      <% avatar_url = @user.avatar_url(@user, 128) %>
-      <% if avatar_url %>
+      <% avatar = @user.avatar_url(128) %>
+      <% if avatar %>
       <div class="media-left">
-        <%= image_tag avatar_url, class: "media-object" %>
+        <%= image_tag avatar, class: "media-object" %>
       </div>
       <% end %>
       <div class="media-body">

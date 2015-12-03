@@ -7,7 +7,7 @@
       <%= render partial: "labels/list", locals: { labels: post.labels } %>
     </h4>
     <small>
-      <%= image_tag post.user.avatar_url(post.user, 48), class: "gravatar", style: "float: left; margin-top: 5px" %>
+      <%= image_tag post.user.avatar_url(48), class: "gravatar", style: "float: left; margin-top: 5px" %>
       <%= time_ago_in_words(post.created_at) %> ago.
       <br>
       Submitted by <%= post.user.name %> <br>
