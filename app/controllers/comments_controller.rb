@@ -5,28 +5,35 @@ class CommentsController < ApplicationController
 
   def create
 #    @post = Post.find(params[:post_id])
-    comment = @post.comments.new(comment_params)
-    comment.user = current_user
-
-    if comment.save
+    @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
+    @new_comment = Comment.new
+    
+    if @comment.save
       flash[:notice] = "Comment saved"
-      redirect_to [@post.topic, @post]
     else
       flash[:error] = "Comment failed to save."
-      redirect_to [@post.topic, @post]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def destroy
 #    @post = Post.find(params[:post_id])
-    comment = @post.comments.find(params[:id])
+    @comment = @post.comments.find(params[:id])
 
-    if comment.destroy
+    if @comment.destroy
       flash[:notice] = "Comment Deleted"
-      redirect_to [@post.topic, @post]
     else
       flash[:error] = "Woops, comment wasn't deleted. try again."
-      redirect_to [@post.topic, @post]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
