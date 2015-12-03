@@ -3,7 +3,7 @@
     <div class="media">
       <br />
 
-      <% avatar_url = @user.avatar_url(128) %>
+      <% avatar_url = @user.avatar_url(@user, 128) %>
       <% if avatar_url %>
       <div class="media-left">
         <%= image_tag avatar_url, class: "media-object" %>
@@ -20,8 +20,21 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if @user.has_content? %>
+  <h2>Posts</h2>
+    <%= render @user.posts %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+  <h2>Comments</h2>
+    <%= render @user.comments %>
+
+<% else %>
+  <h2><%= @user.name %> hasn't submitted any content yet.</h2>
+<% end %>
+
+
+<% if @user.has_favorites? %>
+  <h2>Favorited</h2>
+  <% @user.favorites.each do |fav| %>
+    <%= render partial: 'users/content', locals: {post: fav.post} %>
+  <% end %>
+<% end %>

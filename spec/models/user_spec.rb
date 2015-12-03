@@ -117,4 +117,17 @@ RSpec.describe User, type: :model do
       expect(known_user.avatar_url(48)).to eq(expected_gravatar)
     end
   end
+
+  describe "#has_favorites" do
+    it "false if the user doesn't have favorites" do
+      expect(user.has_favorites?).to eq false
+    end
+
+    it "returns true if the user has favorites" do
+      post = build(:post, user: user)
+      user.favorites << Favorite.create!(post: post)
+      expect(user.has_favorites?).to eq true
+    end
+  end
+
 end
