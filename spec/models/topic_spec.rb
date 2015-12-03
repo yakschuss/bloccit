@@ -46,6 +46,8 @@ RSpec.describe Topic, type: :model do
 
     describe "publicly_viewable" do
       it "returns all topics that are public." do
+Rails.logger.info "@public_topic: #{@public_topic.inspect}"
+Rails.logger.info "foundtopics: #{Topic.publicly_viewable.inspect}"
         expect(Topic.publicly_viewable).to eq([@public_topic])
       end
     end
